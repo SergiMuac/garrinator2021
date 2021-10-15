@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="prova1" type="lector.py" name="lector" output="screen">
+    </node>
+</launch>

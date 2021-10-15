@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>garrinator_hardware_interface</name>
+  <version>0.1.1</version>
+  <description>Garrinator hw interface </description>
+
+  <maintainer email="javier.rubia@uvic.cat">Javier Rubia</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/JavierRubia/Garrinator/tree/master/hardware_interface</url>
+
+  <author email="javier.rubia@uvic.cat">Javier Rubia</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>controller_manager</depend>
+  <depend>hardware_interface</depend>
+  <depend>combined_robot_hw</depend>
+  <depend>joint_limits_interface</depend>
+
+  <export>
+  </export>
+
+</package>

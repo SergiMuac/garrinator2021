@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<launch>
+
+	<!-- Joystick/gamepad -->
+	<!-- Teleop -->
+	<remap from="/robot/cmd_vel" to="/omni4_controller/robot/cmd_vel"/>
+	<!--include file="$(find garri_teleop)/launch/robot_joy.launch"/-->
+	<include file="$(find ydlidar_ros)/launch/X4.launch"/>
+	<!-- hardware interface with motors -->
+	<node
+		pkg="tirador"
+		type="master.py"
+		name="mestre"
+		output="screen">
+	</node>
+	<node
+		pkg="garrinator_hardware_interface"
+		type="hw_if_node"
+		name="hw_if_node"
+		respawn="false"
+		output="screen">
+	</node>
+
+	<!-- read-only "controller" to have joint position feedback -->
+	<rosparam file="$(find garrinator_hardware_interface)/config/controllers.yaml" command="load"/>
+	<node
+		pkg="controller_manager"
+		type="spawner"
+		name="joint_state_controller"
+		respawn="false"
+		output="screen"
+		args="joint_state_controller">
+	</node>
+
+	<!-- Vehicle kinematics -->
+	<rosparam file="$(find omni4_controller)/config/omni4_controller.yaml" command="load"/>
+	<node
+		pkg="controller_manager"
+		type="spawner"
+		name="omni4_controller"
+		respawn="false"
+		output="screen"
+		args="omni4_controller">
+	</node>
+
+	<node
+		pkg="prova1"
+		type="primer_node_millora_sequencia.py"
+		name="primer_node"
+		output="screen">
+	</node>
+	<node
+		pkg="prova2"
+		type="segon_node.py"
+		name="move_forward"
+		output="screen">
+	</node>
+	<node
+		pkg="arduino"
+		type="brazo.py"
+		name="brazo"
+		output="screen">
+    </node>
+
+
+</launch>

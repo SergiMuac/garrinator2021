@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<robot
+	xmlns:xacro="http://www.ros.org/wiki/xacro"
+	name="open_base">
+
+	<xacro:include filename="$(find description)/macros/rim.xacro"/>
+
+	<link name="origin_link"/>
+	<link name="base_link">
+
+		<inertial>
+
+			<mass value="0.07862944645"/>
+			<inertia
+				ixx="0.00002035985530754"
+				ixy="0"
+				ixz="0"
+				iyy="0.00002035985530754"
+				iyz="0"
+				izz="0.00003945961663220"/>
+
+		</inertial>
+
+	  <visual>
+	    <geometry>
+	      <box size="0.3 0.3 0.01"/>
+	    </geometry>
+	    <origin rpy="0 0 0" xyz="0 0 0"/>
+	    <material name="red"/>
+	  </visual>
+
+		<collision>
+
+		<geometry>
+
+      <box size="0.3 0.3 0.01"/>
+
+		</geometry>
+
+	</collision>
+		</link>
+  <joint name="origin_joint" type="fixed">
+      <parent link="origin_link"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 0.065"/>
+  </joint>
+
+
+	<!--front left wheel and motor-->
+
+  <link name="front_left_motor">
+      <visual>
+        <geometry>
+          <cylinder length="0.145" radius="0.015"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="blue"/>
+      </visual>
+  </link>
+
+  <joint name="base_to_front_left_motor" type="fixed">
+      <parent link="base_link"/>
+      <child link="front_left_motor"/>
+      <origin rpy="0 1.570796 0.785398" xyz="0.07 0.07 -0.035" />
+  </joint>
+	
+	<xacro:rim_macro
+			name="front_left"
+			color="1 1 1"
+			xyz="0 0 0.0875"
+			rpy="0 0 0"
+			parent_link="front_left_motor"
+	/>
+
+
+<!--front right wheel and motor-->
+	<link name="front_right_motor">
+		    <visual>
+		      <geometry>
+		        <cylinder length="0.145" radius="0.015"/>
+		      </geometry>
+		      <origin rpy="0 0 0" xyz="0 0 0"/>
+		      <material name="blue"/>
+		    </visual>
+		</link>
+
+	<joint name="base_to_front_right_motor" type="fixed">
+		    <parent link="base_link"/>
+		    <child link="front_right_motor"/>
+		    <origin rpy="0 1.570796 -0.785398" xyz="0.07 -0.07 -0.035" />
+		</joint>
+
+
+	<xacro:rim_macro
+			name="front_right"
+			color="1 1 1"
+			xyz="0 0 0.0875"
+			rpy="0 0 0"
+			parent_link="front_right_motor"
+	 />
+<!--back left wheel and motor-->
+
+
+<link name="back_right_motor">
+    <visual>
+      <geometry>
+        <cylinder length="0.145" radius="0.015"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="blue"/>
+    </visual>
+</link>
+
+<joint name="base_to_back_right_motor" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_right_motor"/>
+    <origin rpy="0 1.570796 3.92699" xyz="-0.07 -0.07 -0.035" />
+</joint>
+
+<xacro:rim_macro
+		name="back_right"
+		color="1 1 1"
+		xyz="0 0 0.0875"
+		rpy="0 0 0"
+		parent_link="back_right_motor"
+ />
+
+<!--back left wheel and motor-->
+
+<link name="back_left_motor">
+    <visual>
+      <geometry>
+        <cylinder length="0.145" radius="0.015"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="blue"/>
+    </visual>
+</link>
+
+<joint name="base_to_back_left_motor" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_left_motor"/>
+    <origin rpy="0 1.570796 2.35619" xyz="-0.07 0.07 -0.035" />
+</joint>
+
+<xacro:rim_macro
+		name="back_left"
+		color="1 1 1"
+		xyz="0 0 0.0875"
+		rpy="0 0 0"
+		parent_link="back_left_motor"
+ />
+
+
+
+
+
+
+
+
+
+</robot>

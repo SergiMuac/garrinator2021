@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find description)/macros/roller.xacro"/>
+
+	<xacro:macro
+		name="rim_macro"
+		params="name color xyz rpy parent_link">
+
+		<link name="rim_${name}_link">
+
+			<inertial>
+
+				<origin xyz="0 0 -0.000343"/>
+				<mass value="0.00835758"/>
+				<inertia
+					ixx="6.63684e-07"
+					ixy="0"
+					ixz="0"
+					iyy="6.63684e-07"
+					iyz="0"
+					izz="9.40333e-07"
+				/>
+
+			</inertial>
+			<visual>
+				<geometry>
+
+					<mesh filename="package://description/mesh/wheelasm.stl" scale="0.001 0.001 0.001"/>
+
+				</geometry>
+				<material name="rim_${name}_material">
+
+					<color rgba="${color} 1"/>
+
+				</material>
+
+			</visual>
+			<collision>
+
+				<geometry>
+
+					<mesh filename="package://description/mesh/wheelasm.stl" scale="0.001 0.001 0.001"/>
+
+				</geometry>
+
+			</collision>
+
+		</link>
+		<joint
+			name="rim_${name}_joint"
+			type="continuous">
+
+			<parent link="${parent_link}" />
+			<child link="rim_${name}_link" />
+			<axis xyz="0 0 1"/>
+			<origin
+				xyz="${xyz}"
+				rpy="${rpy}"/>
+		</joint>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="front_left"
+		xyz="0 -0.024 0.0065"
+		rpy="0 -${pi/2} 0"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="back_right"
+		xyz="0 0.024 -0.0065"
+		rpy="${pi} -${pi/2} 0"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="front_top_right"
+		xyz="-0.0141068 0.0194164 0.0065"
+		rpy="${pi} -${pi/2} ${pi/5}"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="front_down_right"
+		xyz="0.0141068 0.0194164 0.0065"
+		rpy="${pi} -${pi/2} -${pi/5}"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="back_top_left"
+		xyz="-0.0141068 -0.0194164 -0.0065"
+		rpy="0 -${pi/2} -${pi/5}"/>
+
+
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="back_down_left"
+		xyz="0.0141068 -0.0194164 -0.0065"
+		rpy="0 -${pi/2} ${pi/5}"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="front_top_left"
+		xyz="-0.0228254 -0.0074164 0.0065"
+		rpy="${pi} -${pi/2} ${3*pi/5}"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="front_down_left"
+		xyz="0.0228254 -0.0074164 0.0065"
+		rpy="${pi} -${pi/2} -${3*pi/5}"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="back_down_right"
+		xyz="0.0228254 0.0074164 -0.0065"
+		rpy="0 -${pi/2} ${3*pi/5}"/>
+
+	<xacro:roller_macro
+		parent="${name}"
+		name="back_top_right"
+		xyz="-0.0228254 0.0074164 -0.0065"
+		rpy="0 -${pi/2} -${3*pi/5}"/>
+
+
+</xacro:macro>
+
+</robot>

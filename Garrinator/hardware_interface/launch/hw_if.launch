@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<launch>
+
+	<!-- robot description -->
+	<include file="$(find description)/launch/display.launch">
+		<arg name="joint_state_publisher" value="false" />
+		<arg name="joints_gui" value="false"/>
+		<arg name="rviz" value="false"/>
+	</include>
+
+	<!-- hardware interface with motors -->
+	<node
+		pkg="garrinator_hardware_interface"
+		type="hw_if_node"
+		name="hw_if_node"
+		respawn="false"
+		output="screen">
+	</node>
+
+	<!-- read-only "controller" to have joint position feedback -->
+	<rosparam file="$(find garrinator_hardware_interface)/config/controllers.yaml" command="load"/>
+	<node
+		pkg="controller_manager"
+		type="spawner"
+		name="joint_state_controller"
+		respawn="false"
+		output="screen"
+		args="joint_state_controller">
+	</node>
+
+</launch>

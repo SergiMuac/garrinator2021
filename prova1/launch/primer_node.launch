@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="prova1" type="primer_node_millora.py" name="primer_node" output="screen">
+    </node>
+</launch>

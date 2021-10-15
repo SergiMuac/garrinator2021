@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>omni4_controller</name>
+  <version>0.1.1</version>
+  <description>Garrinator hw interface </description>
+  <license>BSD</license>
+  <maintainer email="javier.rubia@uvic.cat">Javier Rubia</maintainer>
+  <author email="javier.rubia@uvic.cat">Javier Rubia</author>
+  <author email="andreu@beta-robots.com">Andreu Corominas Murtra</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>controller_interface</depend>
+  <depend>realtime_tools</depend>
+  <depend>urdf</depend>
+  <depend>eigen_conversions</depend>
+  <depend>geometry_msgs</depend>
+  <depend>pluginlib</depend>
+
+  <export>
+    <controller_interface plugin="${prefix}/controller_plugins.xml"/>
+  </export>
+
+</package>
